@@ -1145,8 +1145,8 @@
     }
   }
 
-  // --- 마우스 및 키보드 이벤트 핸들링 ---
-  window.addEventListener('mousemove', (e) => {
+  // --- 마우스 및 터치 입력 이벤트 핸들링 ---
+  window.addEventListener('pointermove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
     mouse.isInside = true;
@@ -1160,18 +1160,33 @@
     mouse.isInside = true;
   });
 
-  // 좌클릭: 사격
-  window.addEventListener('mousedown', (e) => {
+  // 사격 입력 (마우스 좌클릭 및 모바일 화면 터치)
+  window.addEventListener('pointerdown', (e) => {
+    // 모달창, 버튼, 설정, HUD 탄약 버튼 터치 시 사격 무시
+    if (e.target.closest('button') || e.target.closest('.modal-card') || e.target.closest('#hudAmmoBtn')) {
+      return;
+    }
+
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.isInside = true;
+
     if (e.button === 0) {
-      if (e.target.closest('button') || e.target.closest('.modal-card')) {
-        return;
-      }
       shoot(e.clientX, e.clientY);
     } else if (e.button === 2) {
       e.preventDefault();
       startReload();
     }
   });
+
+  // HUD 탄약 터치/클릭 시 재장전
+  const hudAmmoBtn = document.getElementById('hudAmmoBtn');
+  if (hudAmmoBtn) {
+    hudAmmoBtn.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+      startReload();
+    });
+  }
 
   window.addEventListener('contextmenu', (e) => {
     e.preventDefault();

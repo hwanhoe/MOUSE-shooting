@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>스카이 헌터: 플라잉 타겟 (Sky Hunter: Flying Target)</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,8 +39,8 @@
         </div>
       </div>
 
-      <div class="hud-item hud-ammo">
-        <span class="hud-label">AMMO [R / 우클릭]</span>
+      <div class="hud-item hud-ammo" id="hudAmmoBtn" title="클릭/터치하여 재장전">
+        <span class="hud-label">AMMO [터치/R]</span>
         <div id="ammoBullets" class="ammo-bullets"></div>
       </div>
     </div>
@@ -83,22 +83,22 @@
               <div class="target-preview target-time"></div>
               <div class="target-info">
                 <strong>타임 캡슐</strong>
-                <span class="text-green">+3초 시간 추가!</span>
+                <span class="text-green">+3초 추가</span>
               </div>
             </div>
             <div class="target-card danger">
               <div class="target-preview target-bomb"></div>
               <div class="target-info">
                 <strong>폭탄 드론</strong>
-                <span class="text-red">격추 금지! (-5초 & 콤보 초기화)</span>
+                <span class="text-red">-5초 & 감점</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="controls-guide">
-          <div class="control-key"><span>마우스 좌클릭</span> : 사격</div>
-          <div class="control-key"><span>우클릭 / R 키</span> : 재장전 (총 6발)</div>
+          <div class="control-key"><span>터치 / 좌클릭</span> : 사격</div>
+          <div class="control-key"><span>AMMO 터치 / 우클릭 / R</span> : 재장전</div>
           <div class="control-key"><span>P 키</span> : 일시정지</div>
         </div>
 
